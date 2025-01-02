@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - OVIEPRO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f4f8;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 100%;
+            background-color: rgba(0, 133, 255, 0.65);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar a {
+            margin: 10px 0;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        .sidebar img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 60px;
+            width: calc(100% - 60px);
+            height: 60px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Aligner le contenu à gauche */
+            padding: 0 20px; /* Ajuster le padding pour mieux centrer */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .topbar img {
+            height: 40px;
+            margin-right: 15px; /* Ajustement de l'espacement entre le logo et le texte */
+        }
+
+        .topbar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Espacement entre les liens */
+            margin-left: 50px; /* Décale les liens vers la droite */
+        }
+
+        .topbar .nav-links a {
+            text-decoration: none;
+            color: #0085FF;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .content {
+            margin: 80px 20px 20px 80px;
+        }
+
+        .widget-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .widget {
+            background: linear-gradient(145deg, #e6f0ff, #ffffff);
+            border-radius: 15px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .widget h3 {
+            font-size: 1.2rem;
+            color: #2e3b4e;
+            margin-bottom: 10px;
+        }
+
+        .widget canvas {
+            flex-grow: 1;
+            max-height: 180px;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+
+        .legend span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend span::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend .green::before {
+            background-color: #28a745;
+        }
+
+        .legend .red::before {
+            background-color: #dc3545;
+        }
+
+        .legend .blue::before {
+            background-color: #007bff;
+        }
+
+        .legend .orange::before {
+            background-color: #fd7e14;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="dashboard.html">
+            <img src="assets/home.png" alt="Accueil">
+        </a>
+        <a href="duerp_list.html">
+            <img src="assets/CTA.png" alt="Liste">
+        </a>
+        <a href="methodology.html">
+            <img src="assets/assistance_button.png" alt="Informations">
+        </a>
+    </div>
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <a href="https://www.oviepro.fr" target="_blank"><img src="assets/logo.png" alt="OVIEPRO Logo"></a>
+        <div class="nav-links">
+            <a href="dashboard.html">Accueil</a>
+            <a href="duerp_list.html">Liste des DUERP</a>
+            <a href="methodology.html">Méthodologie</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2>Les statistiques clés</h2>
+        <div class="widget-container">
+            <div class="widget">
+                <h3>Actions réalisées / an</h3>
+                <canvas id="chartPie1"></canvas>
+                <div class="legend">
+                    <span class="green">Réalisées</span>
+                    <span class="red">Non réalisées</span>
+                </div>
+            </div>
+            <div class="widget">
+                <h3>Actions non réalisées à temps / an</h3>
+                <canvas id="chartPie2"></canvas>
+                <div class="legend">
+                    <span class="red">Non réalisées</span>
+                    <span class="green">Réalisées</span>
+                </div>
+            </div>
+            <div class="widget">
+                <h3>Nombre de DAT par risque / an</h3>
+                <canvas id="chart1"></canvas>
+                <div class="legend">
+                    <span class="blue">Valeurs</span>
+                </div>
+            </div>
+            <div class="widget">
+                <h3>Risques les + élevés par SIRET</h3>
+                <canvas id="chart2"></canvas>
+                <div class="legend">
+                    <span class="blue">Gravité</span>
+                </div>
+            </div>
+            <div class="widget">
+                <h3>Risques les + élevés par UT</h3>
+                <canvas id="chart3"></canvas>
+                <div class="legend">
+                    <span class="blue">Valeurs</span>
+                </div>
+            </div>
+            <div class="widget">
+                <h3>Les risques les plus présents en 2023</h3>
+                <canvas id="chart4"></canvas>
+                <div class="legend">
+                    <span class="blue">Chute</span>
+                    <span class="orange">Machines</span>
+                    <span class="green">Bruit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Example pie chart initialization for Actions réalisées
+        const ctxPie1 = document.getElementById('chartPie1').getContext('2d');
+        const chartPie1 = new Chart(ctxPie1, {
+            type: 'pie',
+            data: {
+                labels: ['Réalisées', 'Non réalisées'],
+                datasets: [{
+                    data: [85, 15],
+                    backgroundColor: ['#28a745', '#dc3545']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Example pie chart initialization for Actions non réalisées
+        const ctxPie2 = document.getElementById('chartPie2').getContext('2d');
+        const chartPie2 = new Chart(ctxPie2, {
+            type: 'pie',
+            data: {
+                labels: ['Non réalisées', 'Réalisées'],
+                datasets: [{
+                    data: [15, 85],
+                    backgroundColor: ['#dc3545', '#28a745']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Example bar charts for DAT and SIRET
+        const ctx1 = document.getElementById('chart1').getContext('2d');
+        const chart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Colonne 1', 'Colonne 2', 'Colonne 3', 'Colonne 4'],
+                datasets: [{
+                    label: 'Valeurs',
+                    data: [6, 4, 8, 5],
+                    backgroundColor: ['#007bff', '#28a745', '#fd7e14', '#dc3545']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                maintainAspectRatio: false
+            }
+        });
+
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+        const chart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Lyon', 'Paris', 'Marseille', 'Lille'],
+                datasets: [{
+                    label: 'Gravité',
+                    data: [8, 10, 7, 5],
+                    backgroundColor: ['#007bff', '#28a745', '#fd7e14', '#dc3545']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                maintainAspectRatio: false
+            }
+        });
+
+        const ctx3 = document.getElementById('chart3').getContext('2d');
+        const chart3 = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['UT 1', 'UT 2', 'UT 3', 'UT 4'],
+                datasets: [{
+                    label: 'Valeurs',
+                    data: [4, 7, 3, 6],
+                    backgroundColor: ['#007bff', '#28a745', '#fd7e14', '#dc3545']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                maintainAspectRatio: false
+            }
+        });
+
+        const ctx4 = document.getElementById('chart4').getContext('2d');
+        const chart4 = new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: ['Chute', 'Machines', 'Bruit'],
+                datasets: [{
+                    label: 'Risques',
+                    data: [10, 6, 8],
+                    backgroundColor: ['#007bff', '#fd7e14', '#28a745']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+</html>

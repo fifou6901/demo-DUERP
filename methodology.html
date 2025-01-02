@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Méthodologie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f4f8;
+        }
+
+        .content {
+            margin: 80px 20px 20px 80px;
+            overflow-y: auto; /* Ajout pour permettre le défilement */
+            max-height: calc(100vh - 100px); /* Ajuste la hauteur pour éviter d'être masqué par le footer */
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 100%;
+            background-color: rgba(0, 133, 255, 0.65);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar a {
+            margin: 10px 0;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        .sidebar img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 60px;
+            width: calc(100% - 60px);
+            height: 60px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .topbar img {
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .topbar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: 50px;
+        }
+
+        .topbar .nav-links a {
+            text-decoration: none;
+            color: #0085FF;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .content {
+            margin: 80px 20px 20px 80px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            font-weight: 700;
+        }
+
+        td[data-color="vert"] {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        td[data-color="jaune"] {
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+        td[data-color="orange"] {
+            color: #fd7e14;
+            font-weight: bold;
+        }
+
+        td[data-color="rouge"] {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        h1, h2 {
+            color: #0085FF;
+        }
+
+    </style>
+</head>
+<body>
+   <!-- Sidebar -->
+   <div class="sidebar">
+        <a href="dashboard.html">
+            <img src="assets/home.png" alt="Accueil">
+    </a>
+    <a href="duerp_list.html">
+        <img src="assets/CTA.png" alt="Liste">
+    </a>
+    <a href="methodology.html">
+        <img src="assets/assistance_button.png" alt="Informations">
+    </a>
+</div>
+
+<!-- Topbar -->
+<div class="topbar">
+    <a href="https://www.oviepro.fr" target="_blank"><img src="assets/logo.png" alt="OVIEPRO Logo"></a>
+    <div class="nav-links">
+        <a href="dashboard.html">Accueil</a>
+        <a href="duerp_list.html">Liste des DUERP</a>
+        <a href="methodology.html">Méthodologie</a>
+    </div>
+</div>
+
+    <main class="content">
+        <h1>Méthodologie de classement des risques</h1>
+
+        <section class="risques">
+            <h2>Risques professionnels</h2>
+            <p>Liste des risques identifiés par l'INRS :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="3">Risques</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Activité physique</td>
+                        <td>Addiction</td>
+                        <td>Agents sensibilisants</td>
+                    </tr>
+                    <tr>
+                        <td>Biologiques</td>
+                        <td>Bruit</td>
+                        <td>Carences professionnelles</td>
+                    </tr>
+                    <tr>
+                        <td>CMR - Agents chimiques</td>
+                        <td>Champ électromagnétique</td>
+                        <td>Chimiques</td>
+                    </tr>
+                    <tr>
+                        <td>Chutes de hauteur</td>
+                        <td>Chutes de plain-pied</td>
+                        <td>Déplacements</td>
+                    </tr>
+                    <tr>
+                        <td>Électriques</td>
+                        <td>Environnements spécifiques de travail</td>
+                        <td>Incendie et explosion</td>
+                    </tr>
+                    <tr>
+                        <td>Machines</td>
+                        <td>Mécaniques</td>
+                        <td>Nanomatériaux</td>
+                    </tr>
+                    <tr>
+                        <td>Organisation du travail</td>
+                        <td>Perturbateurs endocriniens</td>
+                        <td>Polyexpositions</td>
+                    </tr>
+                    <tr>
+                        <td>Psychosociaux</td>
+                        <td>Rayonnements ionisants</td>
+                        <td>Rayonnements optiques</td>
+                    </tr>
+                    <tr>
+                        <td>Vibrations</td>
+                        <td>Covid-19</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="criteres">
+            <h2>Critères d'évaluation</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Gravité</th>
+                        <th>Fréquence d'exposition</th>
+                        <th>Maîtrise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Faible</td>
+                        <td>Annuelle</td>
+                        <td>Forte</td>
+                    </tr>
+                    <tr>
+                        <td>Modérée</td>
+                        <td>Mensuelle</td>
+                        <td>Moyenne</td>
+                    </tr>
+                    <tr>
+                        <td>Grave</td>
+                        <td>Hebdomadaire</td>
+                        <td>Faible</td>
+                    </tr>
+                    <tr>
+                        <td>Très grave</td>
+                        <td>Journalière</td>
+                        <td>Absente</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="signification">
+            <h2>Signification des critères</h2>
+            <p>Explications des termes utilisés pour l'évaluation des risques :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Gravité du dommage potentiel</th>
+                        <th>Fréquence d'exposition</th>
+                        <th>Maîtrise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Faible : Pas de séquelle importante</td>
+                        <td>Annuelle : Quelques jours par an</td>
+                        <td>Forte : Présence d'éléments de maîtrise prioritaire</td>
+                    </tr>
+                    <tr>
+                        <td>Modérée : Arrêt de travail > 7 jours</td>
+                        <td>Mensuelle : Quelques jours par mois</td>
+                        <td>Moyenne : Présence d'éléments de maîtrise secondaire</td>
+                    </tr>
+                    <tr>
+                        <td>Grave : Incapacité partielle</td>
+                        <td>Hebdomadaire : Tous les jours 20-50 % du temps</td>
+                        <td>Faible : Mesures d'efficacité limitée</td>
+                    </tr>
+                    <tr>
+                        <td>Très grave : Mort</td>
+                        <td>Journalière : Tous les jours > 50 % du temps</td>
+                        <td>Absente : Pas de maîtrise</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="hierarchisation">
+            <h2>Hiérarchisation des couples danger / risque / maîtrise</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Note globale</th>
+                        <th>Évaluation globale</th>
+                        <th>Priorité et codes couleurs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-color="vert">Note < 16</td>
+                        <td>Risque faible</td>
+                        <td data-color="vert">Vert</td>
+                    </tr>
+                    <tr>
+                        <td data-color="jaune">16 < Note < 31</td>
+                        <td>Risque modéré</td>
+                        <td data-color="jaune">Jaune</td>
+                    </tr>
+                    <tr>
+                        <td data-color="orange">32 < Note < 47</td>
+                        <td>Risque grave</td>
+                        <td data-color="orange">Orange</td>
+                    </tr>
+                    <tr>
+                        <td data-color="rouge">48 < Note < 64</td>
+                        <td>Risque très grave</td>
+                        <td data-color="rouge">Rouge</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <p>2024 - OVIEPRO - Tous droits réservés</p>
+    </main>
+</body>
+</html>

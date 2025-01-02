@@ -1,0 +1,228 @@
+<!-- Modal Overlay -->
+<div class="modal-overlay" id="modalOverlay"></div>
+
+<!-- Modal -->
+<div class="modal" id="riskModal">
+    <div class="modal-header">
+        <h3>Ajouter un risque</h3>
+        <button class="close-button" onclick="closeModal()">&times;</button>
+    </div>
+    <form id="addRiskForm">
+        <div class="modal-body">
+            <label for="riskName">Risque:</label>
+            <select id="riskName" class="input-field">
+                <option value="">Sélectionner un risque</option>
+            </select>
+            <button type="button" onclick="addNewOption('riskName', 'Ajouter un nouveau risque')">+</button>
+
+            <label for="danger">Danger:</label>
+            <select id="danger" class="input-field">
+                <option value="">Sélectionner un danger</option>
+            </select>
+            <button type="button" onclick="addNewOption('danger', 'Ajouter un nouveau danger')">+</button>
+
+            <label for="workUnit">Unité de travail:</label>
+            <select id="workUnit" class="input-field">
+                <option value="">Sélectionner une unité de travail</option>
+            </select>
+            <button type="button" onclick="addNewOption('workUnit', 'Ajouter une nouvelle unité de travail')">+</button>
+
+            <label for="frequency">Fréquence (F):</label>
+            <input type="number" id="frequency" class="input-field" min="1" required>
+
+            <label for="gravity">Gravité (G):</label>
+            <input type="number" id="gravity" class="input-field" min="1" required>
+
+            <label for="mastery">Maitrise (M):</label>
+            <input type="number" id="mastery" class="input-field" min="1" required>
+
+            <label for="note">Note:</label>
+            <input type="text" id="note" class="input-field" disabled>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="button cancel-button" onclick="closeModal()">Annuler</button>
+            <button type="submit" class="button submit-button">Ajouter</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        width: 400px;
+        max-width: 90%; /* Ajoute une limite pour éviter que la modal dépasse sur petits écrans */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .modal-header {
+        padding: 15px 20px;
+        background-color: #007bff;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+    }
+
+    .modal-header .close-button {
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .modal-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .input-field {
+        width: 100%;
+        max-width: 350px; /* Limite la largeur des champs */
+        padding: 8px 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        font-size: 0.9rem;
+    }
+
+    .modal-footer {
+        padding: 15px 20px;
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        cursor: pointer;
+    }
+
+    .cancel-button {
+        background-color: #6c757d;
+        color: #ffffff;
+    }
+
+    .cancel-button:hover {
+        background-color: #5a6268;
+    }
+
+    .submit-button {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<script>
+    const riskTableBody = document.getElementById('riskTableBody');
+
+    // Ouvrir la modale
+    function showModal() {
+        document.getElementById('modalOverlay').style.display = 'block';
+        document.getElementById('riskModal').style.display = 'block';
+    }
+
+    // Fermer la modale
+    function closeModal() {
+        document.getElementById('modalOverlay').style.display = 'none';
+        document.getElementById('riskModal').style.display = 'none';
+    }
+
+    // Ajouter une nouvelle option dans un select
+    function addNewOption(selectId, promptMessage) {
+        const newValue = prompt(promptMessage);
+        if (newValue) {
+            const select = document.getElementById(selectId);
+            const newOption = document.createElement('option');
+            newOption.value = newValue;
+            newOption.text = newValue;
+            select.add(newOption);
+            select.value = newValue;
+
+            // Simuler un ajout en base de données
+            console.log(`Ajouté à la base: ${newValue}`);
+        }
+    }
+
+    // Calculer automatiquement la note
+    document.getElementById('addRiskForm').addEventListener('input', function () {
+        const frequency = parseInt(document.getElementById('frequency').value) || 0;
+        const gravity = parseInt(document.getElementById('gravity').value) || 0;
+        const mastery = parseInt(document.getElementById('mastery').value) || 0;
+        const note = frequency * gravity * mastery;
+        document.getElementById('note').value = note;
+    });
+
+    // Ajouter une ligne dans le tableau
+    document.getElementById('addRiskForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const riskName = document.getElementById('riskName').value;
+        const danger = document.getElementById('danger').value;
+        const workUnit = document.getElementById('workUnit').value;
+        const frequency = document.getElementById('frequency').value;
+        const gravity = document.getElementById('gravity').value;
+        const mastery = document.getElementById('mastery').value;
+        const note = document.getElementById('note').value;
+
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${new Date().toLocaleString()}</td>
+            <td>${riskName}</td>
+            <td>${danger}</td>
+            <td>${workUnit}</td>
+            <td>${gravity}</td>
+            <td>${frequency}</td>
+            <td>${mastery}</td>
+            <td class="note">${note}</td>
+            <td>${new Date().toLocaleString()}</td>
+            <td class="actions">
+                <button onclick="editRisk()">Éditer</button>
+                <button onclick="deleteRisk()">Supprimer</button>
+            </td>
+        `;
+        riskTableBody.appendChild(newRow);
+        closeModal();
+    });
+
+    function editRisk() {
+        alert('Fonctionnalité à implémenter.');
+    }
+
+    function deleteRisk() {
+        alert('Fonctionnalité à implémenter.');
+    }
+</script>

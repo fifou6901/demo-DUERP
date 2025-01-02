@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - OVIEPRO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+        }
+
+        .container {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            width: 90%;
+            height: 80%;
+        }
+
+        .image-section {
+            flex: 1;
+            background: url('assets/left.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-section h1 {
+            font-size: 2rem;
+            color: #2e3b4e;
+            font-weight: 700;
+        }
+
+        .form-section p {
+            color: #6c757d;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+        }
+
+        .form-group a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 400;
+        }
+
+        .footer img {
+            height: 20px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-section">
+            <!-- Image de fond chargée -->
+        </div>
+        <div class="form-section">
+            <img src="assets/logo.png" alt="OVIEPRO Logo" style="max-width: 200px; margin-bottom: 20px;">
+            <h1>Content de vous voir.</h1>
+            <p>Restez conforme à la législation et améliorez votre climat social.</p>
+            <form>
+                <div class="form-group">
+                    <label for="username">Votre identifiant</label>
+                    <input type="text" id="username" placeholder="@">
+                </div>
+                <div class="form-group">
+                    <label for="password">Votre mot de passe</label>
+                    <input type="password" id="password" placeholder="&#128274;">
+                </div>
+                <div class="form-group">
+                    <a href="forgot_password.html">Mot de passe perdu ?</a>
+                </div>
+                <div class="form-group">
+                    <button type="submit" formaction="dashboard.html">Connexion</button>
+                </div>
+            </form>
+            <div class="footer">
+                &copy; 2024 - Tous droits réservés <img src="assets/logo-oviepro-no-bl.jpg" alt="OVIEPRO Logo">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
